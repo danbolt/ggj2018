@@ -17,18 +17,27 @@ Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
 Player.prototype.update = function () {
   this.body.velocity.set(0, 0);
-  if (this.game.input.keyboard.isDown(Phaser.KeyCode.UP)) {
-    this.body.velocity.y = -this.moveSpeed;
-    this.animations.play('up');
-  } else if (this.game.input.keyboard.isDown(Phaser.KeyCode.DOWN)) {
-    this.body.velocity.y = this.moveSpeed;
-    this.animations.play('down');
-  }
+
+  var isMovingSideways = false;
   if (this.game.input.keyboard.isDown(Phaser.KeyCode.LEFT)) {
     this.body.velocity.x = -this.moveSpeed;
     this.animations.play('left');
+    isMovingSideways = true;
   } else if (this.game.input.keyboard.isDown(Phaser.KeyCode.RIGHT)) {
     this.body.velocity.x = this.moveSpeed;
     this.animations.play('right');
+    isMovingSideways = true;
+  }
+
+  if (this.game.input.keyboard.isDown(Phaser.KeyCode.UP)) {
+    this.body.velocity.y = -this.moveSpeed;
+    if (!isMovingSideways) {
+      this.animations.play('up');
+    }
+  } else if (this.game.input.keyboard.isDown(Phaser.KeyCode.DOWN)) {
+    this.body.velocity.y = this.moveSpeed;
+    if (!isMovingSideways) {
+      this.animations.play('down');
+    }
   }
 };
