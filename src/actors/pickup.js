@@ -5,3 +5,6 @@ var Pickup = function (game, x, y) {
 };
 Pickup.prototype = Object.create(Phaser.Sprite.prototype);
 Pickup.prototype.constructor = Pickup;
+Pickup.prototype.onCollected = function (game, player) {
+  this.destroy();
+};

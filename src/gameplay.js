@@ -29,9 +29,8 @@ Gameplay.prototype.create = function() {
 Gameplay.prototype.update = function () {
   this.game.physics.arcade.collide(this.player, this.foreground);
 
-  this.game.physics.arcade.overlap(this.player, this.pushblocks, function (player, pushBlock) {
-    pushBlock.pushedFrom(player.x, player.y);
-  }, undefined, this);
+  updatePushblocks(this);
+  updatePickups(this);
 };
 Gameplay.prototype.shutdown = function () {
   this.map = null;
@@ -50,6 +49,12 @@ function spawnPushblocks(gameplay) {
   }, gameplay);
 };
 
+function updatePushblocks(gameplay) {
+  gameplay.game.physics.arcade.overlap(gameplay.player, gameplay.pushblocks, function (player, pushblock) {
+    pushblock.pushedFrom(player.x, player.y);
+  }, undefined, gameplay);
+};
+
 function spawnPickups(gameplay) {
   gameplay.pickups = gameplay.game.add.group();
 
@@ -58,4 +63,10 @@ function spawnPickups(gameplay) {
     gameplay.pickups.addChild(block);
     gameplay.pickups.addToHash(block);
   }, gameplay);
+};
+
+function updatePickups(gameplay) {
+  gameplay.game.physics.arcade.overlap(gameplay.player, gameplay.pickups, function (player, pickup) {
+    pickup.onCollected(gameplay.game, player);
+  }, undefined, gameplay);
 };
