@@ -54,6 +54,7 @@ Load.prototype.preload = function() {
   }, this);
 
   this.game.load.spritesheet('coloured_squares', 'asset/img/16x16SquareSheet.png', 16, 16);
+  this.game.load.spritesheet('player', 'asset/img/player.png', 16, 32);
 
   this.game.load.image('coloured_squares_tiles', 'asset/img/16x16SquareSheet.png');
   this.game.load.tilemap('sandbox', 'asset/map/sandbox.json', undefined, Phaser.Tilemap.TILED_JSON);
