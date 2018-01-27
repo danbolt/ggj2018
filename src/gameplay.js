@@ -1,6 +1,7 @@
 var Gameplay = function () {
   this.map = null;
   this.foreground = null;
+  this.player = null;
 };
 Gameplay.prototype.init = function() {
   //
@@ -31,6 +32,9 @@ Gameplay.prototype.create = function() {
 
     i = (i + 1) % text.children.length;
   }, this);
+
+  this.player = new Player(this.game, 100, 100);
+  this.game.add.existing(this.player);
 
 };
 Gameplay.prototype.update = function () {
