@@ -11,8 +11,7 @@
                  "name":"chaser1",
                  "properties":
                     {
-                     "hp":"5",
-                     "speed":"3"
+
                     },
                  "rotation":0,
                  "type":"chaser",
@@ -27,14 +26,13 @@
                  "name":"sweeper1",
                  "properties":
                     {
-                     "hp":"5",
-                     "speed":"3"
+                     "destinationX":"144"
                     },
                  "rotation":0,
                  "type":"sweeper",
                  "visible":true,
                  "width":16,
-                 "x":112,
+                 "x":80,
                  "y":32
                 }],
          "opacity":1,

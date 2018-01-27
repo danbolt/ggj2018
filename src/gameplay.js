@@ -62,9 +62,9 @@ function spawnPickups(gameplay) {
   gameplay.pickups = gameplay.game.add.group();
 
   gameplay.map.objects.pickups.forEach(function (spawnData) {
-    var block = gameplay.game.add.existing(new Pickup(gameplay.game, spawnData.x + 8, spawnData.y + 8));
-    gameplay.pickups.addChild(block);
-    gameplay.pickups.addToHash(block);
+    var spawn = gameplay.game.add.existing(new Pickup(gameplay.game, spawnData.x + 8, spawnData.y + 8));
+    gameplay.pickups.addChild(spawn);
+    gameplay.pickups.addToHash(spawn);
   }, gameplay);
 };
 
@@ -80,14 +80,14 @@ function spawnMonsters(gameplay) {
   gameplay.map.objects.monsters.forEach(function (spawnData) {
 
     if (spawnData.type = 'sweeper') {
-      var block = gameplay.game.add.existing(new Sweeper(gameplay.game, spawnData.x, spawnData.y));
-      gameplay.monsters.addChild(block);
-      gameplay.monsters.addToHash(block);
+      var spawn = gameplay.game.add.existing(new Sweeper(gameplay.game, spawnData));
+      gameplay.monsters.addChild(spawn);
+      gameplay.monsters.addToHash(spawn);
 
     } else if (spawnData.type = 'chaser') {
-      var block = gameplay.game.add.existing(new Chaser(gameplay.game, spawnData.x, spawnData.y));
-      gameplay.monsters.addChild(block);
-      gameplay.monsters.addToHash(block);
+      var spawn = gameplay.game.add.existing(new Chaser(gameplay.game, spawnData));
+      gameplay.monsters.addChild(spawn);
+      gameplay.monsters.addToHash(spawn);
     }
   }, gameplay);
 };
