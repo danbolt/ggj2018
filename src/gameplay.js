@@ -13,6 +13,8 @@ Gameplay.prototype.create = function() {
   this.map = this.game.add.tilemap('sandbox');
   this.map.addTilesetImage('16x16SquareSheet', 'coloured_squares_tiles');
   this.foreground = this.map.createLayer('foreground');
+  this.map.setCollisionByExclusion([], true, this.foreground);
+  this.game.physics.enable(this.foreground, Phaser.Physics.ARCADE);
 
   var text = this.game.add.bitmapText(32, 32, 'newsgeek', 'hello, world!', 16);
 
@@ -38,7 +40,7 @@ Gameplay.prototype.create = function() {
 
 };
 Gameplay.prototype.update = function () {
-  //
+  this.game.physics.arcade.collide(this.player, this.foreground);
 };
 Gameplay.prototype.shutdown = function () {
   this.map = null;
