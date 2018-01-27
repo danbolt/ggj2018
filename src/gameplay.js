@@ -14,6 +14,7 @@ var Gameplay = function () {
   this.timeText = null;
   this.countdownTimer = null;
   this.score = 0;
+  this.monsters = null;
 };
 Gameplay.prototype.init = function() {
   //
@@ -29,10 +30,10 @@ Gameplay.prototype.create = function() {
   this.map.setCollisionByExclusion([], true, this.foreground);
   this.game.physics.enable(this.foreground, Phaser.Physics.ARCADE);
 
+  this.player = new Player(this.game, 100, 100);
   spawnPushblocks(this);
   spawnPickups(this);
-
-  this.player = new Player(this.game, 100, 100);
+  spawnMonsters(this);
   this.game.add.existing(this.player);
 
   this.uiSetup();
@@ -52,6 +53,7 @@ Gameplay.prototype.update = function () {
 
   updatePushblocks(this);
   updatePickups(this);
+  updateMonsters(this);
 };
 Gameplay.prototype.scoreSetup = function () {
   this.itemsCollected = 0;
@@ -121,7 +123,7 @@ function spawnPushblocks(gameplay) {
   gameplay.pushblocks = gameplay.game.add.group();
 
   gameplay.map.objects.blocks.forEach(function (spawnData) {
-    if (spawnData.type = 'pushBlock') {
+    if (spawnData.type === 'pushBlock') {
       var block = gameplay.game.add.existing(new PushBlock(gameplay.game, spawnData.x + 8, spawnData.y + 8, gameplay.map, gameplay.foreground));
       gameplay.pushblocks.addChild(block);
       gameplay.pushblocks.addToHash(block);
@@ -139,9 +141,9 @@ function spawnPickups(gameplay) {
   gameplay.pickups = gameplay.game.add.group();
 
   gameplay.map.objects.pickups.forEach(function (spawnData) {
-    var block = gameplay.game.add.existing(new Pickup(gameplay.game, spawnData.x + 8, spawnData.y + 8));
-    gameplay.pickups.addChild(block);
-    gameplay.pickups.addToHash(block);
+    var spawn = gameplay.game.add.existing(new Pickup(gameplay.game, spawnData.x + 8, spawnData.y + 8));
+    gameplay.pickups.addChild(spawn);
+    gameplay.pickups.addToHash(spawn);
   }, gameplay);
 };
 
@@ -153,4 +155,25 @@ function updatePickups(gameplay) {
     this.jpegsText.text = this.itemsCollected + '/' + this.itemsOnMap;
     this.updateScore(10);
   }, undefined, gameplay);
+};
+
+function spawnMonsters(gameplay) {
+  gameplay.monsters = gameplay.game.add.group();
+
+  gameplay.map.objects.monsters.forEach(function (spawnData) {
+
+    if (spawnData.type === 'sweeper') {
+      var spawn = gameplay.game.add.existing(new Sweeper(gameplay.game, gameplay.player, spawnData));
+      gameplay.monsters.addChild(spawn);
+      gameplay.monsters.addToHash(spawn);
+
+    } else if (spawnData.type === 'chaser') {
+      var spawn = gameplay.game.add.existing(new Chaser(gameplay.game, gameplay.player, spawnData));
+      gameplay.monsters.addChild(spawn);
+      gameplay.monsters.addToHash(spawn);
+    }
+  }, gameplay);
+};
+
+function updateMonsters(gameplay) {
 };

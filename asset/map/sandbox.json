@@ -8,18 +8,32 @@
                 {
                  "height":16,
                  "id":6,
-                 "name":"bad_guy",
+                 "name":"chaser1",
                  "properties":
                     {
-                     "hp":"5",
-                     "speed":"3"
+
                     },
                  "rotation":0,
-                 "type":"",
+                 "type":"chaser",
                  "visible":true,
                  "width":16,
                  "x":192,
                  "y":192
+                }, 
+                {
+                 "height":16,
+                 "id":26,
+                 "name":"sweeper1",
+                 "properties":
+                    {
+                     "destinationX":"144"
+                    },
+                 "rotation":0,
+                 "type":"sweeper",
+                 "visible":true,
+                 "width":16,
+                 "x":80,
+                 "y":32
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -73,7 +87,7 @@
                  "visible":true,
                  "width":16,
                  "x":160,
-                 "y":80
+                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -104,7 +118,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":26,
+ "nextobjectid":27,
  "orientation":"orthogonal",
  "properties":
     {
