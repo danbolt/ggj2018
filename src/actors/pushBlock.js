@@ -5,3 +5,14 @@ var PushBlock = function (game, x, y) {
 };
 PushBlock.prototype = Object.create(Phaser.Sprite.prototype);
 PushBlock.prototype.constructor = PushBlock;
+PushBlock.prototype.pushedFrom = function(x, y) {
+  if (x < this.x - this.width / 2) {
+    console.log("pushed right");
+  } else if (x > this.x + this.width / 2) {
+    console.log("pushed left");
+  } else if (y < this.y - this.height / 2) {
+    console.log("pushed down");
+  } else if (y > this.y + this.height / 2) {
+    console.log("pushed up");
+  }
+};

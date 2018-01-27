@@ -3,6 +3,7 @@ var Gameplay = function () {
   this.background = null;
   this.foreground = null;
   this.player = null;
+  this.pushBlocks = null;
 };
 Gameplay.prototype.init = function() {
   //
@@ -40,14 +41,22 @@ Gameplay.prototype.create = function() {
   this.player = new Player(this.game, 100, 100);
   this.game.add.existing(this.player);
 
+  this.pushBlocks = this.game.add.group();
+
   this.map.objects.blocks.forEach(function (blockData) {
     if (blockData.type = 'pushBlock') {
       var block = this.game.add.existing(new PushBlock(this.game, blockData.x, blockData.y));
+      this.pushBlocks.addChild(block);
+      this.pushBlocks.addToHash(block);
     }
   }, this);
 };
 Gameplay.prototype.update = function () {
   this.game.physics.arcade.collide(this.player, this.foreground);
+
+  this.game.physics.arcade.overlap(this.player, this.pushBlocks, function (player, pushBlock) {
+    pushBlock.pushedFrom(player.x, player.y);
+  }, undefined, this);
 };
 Gameplay.prototype.shutdown = function () {
   this.map = null;
