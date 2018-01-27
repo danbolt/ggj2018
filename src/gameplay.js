@@ -5,6 +5,7 @@ var Gameplay = function () {
   this.player = null;
   this.pushblocks = null;
   this.pickups = null;
+  this.monsters = null;
 };
 Gameplay.prototype.init = function() {
   //
@@ -22,6 +23,7 @@ Gameplay.prototype.create = function() {
 
   spawnPushblocks(this);
   spawnPickups(this);
+  spawnMonsters(this);
 
   this.player = new Player(this.game, 100, 100);
   this.game.add.existing(this.player);
@@ -31,6 +33,7 @@ Gameplay.prototype.update = function () {
 
   updatePushblocks(this);
   updatePickups(this);
+  updateMonsters(this);
 };
 Gameplay.prototype.shutdown = function () {
   this.map = null;
@@ -69,4 +72,25 @@ function updatePickups(gameplay) {
   gameplay.game.physics.arcade.overlap(gameplay.player, gameplay.pickups, function (player, pickup) {
     pickup.onCollected(gameplay.game, player);
   }, undefined, gameplay);
+};
+
+function spawnMonsters(gameplay) {
+  gameplay.monsters = gameplay.game.add.group();
+
+  gameplay.map.objects.monsters.forEach(function (spawnData) {
+
+    if (spawnData.type = 'sweeper') {
+      var block = gameplay.game.add.existing(new Sweeper(gameplay.game, spawnData.x, spawnData.y));
+      gameplay.monsters.addChild(block);
+      gameplay.monsters.addToHash(block);
+
+    } else if (spawnData.type = 'chaser') {
+      var block = gameplay.game.add.existing(new Chaser(gameplay.game, spawnData.x, spawnData.y));
+      gameplay.monsters.addChild(block);
+      gameplay.monsters.addToHash(block);
+    }
+  }, gameplay);
+};
+
+function updateMonsters(gameplay) {
 };
