@@ -1,5 +1,6 @@
 var Gameplay = function () {
-  //
+  this.map = null;
+  this.foreground = null;
 };
 Gameplay.prototype.init = function() {
   //
@@ -8,6 +9,10 @@ Gameplay.prototype.preload = function() {
   //
 };
 Gameplay.prototype.create = function() {
+  this.map = this.game.add.tilemap('sandbox');
+  this.map.addTilesetImage('16x16SquareSheet', 'coloured_squares_tiles');
+  this.foreground = this.map.createLayer('foreground');
+
   var text = this.game.add.bitmapText(32, 32, 'newsgeek', 'hello, world!', 16);
 
   var square = this.game.add.sprite(100, 100, 'coloured_squares', 5);
@@ -26,10 +31,12 @@ Gameplay.prototype.create = function() {
 
     i = (i + 1) % text.children.length;
   }, this);
+
 };
 Gameplay.prototype.update = function () {
   //
 };
 Gameplay.prototype.shutdown = function () {
-  this.player = null;
+  this.map = null;
+  this.foreground = null;
 };
