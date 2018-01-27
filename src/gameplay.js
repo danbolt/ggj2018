@@ -59,7 +59,7 @@ function spawnPickups(gameplay) {
   gameplay.pickups = gameplay.game.add.group();
 
   gameplay.map.objects.pickups.forEach(function (spawnData) {
-    var block = gameplay.game.add.existing(new Pickup(gameplay.game, spawnData.x, spawnData.y));
+    var block = gameplay.game.add.existing(new Pickup(gameplay.game, spawnData.x + 8, spawnData.y + 8));
     gameplay.pickups.addChild(block);
     gameplay.pickups.addToHash(block);
   }, gameplay);
