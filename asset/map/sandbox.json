@@ -31,6 +31,33 @@
         {
          "draworder":"topdown",
          "height":15,
+         "name":"pickups",
+         "objects":[
+                {
+                 "height":16,
+                 "id":25,
+                 "name":"pickup1",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"pickup",
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":176
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":15,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":15,
          "name":"blocks",
          "objects":[
                 {
@@ -77,7 +104,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":22,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "properties":
     {
