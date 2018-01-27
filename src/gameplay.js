@@ -44,7 +44,7 @@ function spawnPushblocks(gameplay) {
   gameplay.pushblocks = gameplay.game.add.group();
 
   gameplay.map.objects.blocks.forEach(function (spawnData) {
-    if (spawnData.type = 'pushBlock') {
+    if (spawnData.type === 'pushBlock') {
       var block = gameplay.game.add.existing(new PushBlock(gameplay.game, spawnData.x + 8, spawnData.y + 8, gameplay.map, gameplay.foreground));
       gameplay.pushblocks.addChild(block);
       gameplay.pushblocks.addToHash(block);
@@ -79,12 +79,12 @@ function spawnMonsters(gameplay) {
 
   gameplay.map.objects.monsters.forEach(function (spawnData) {
 
-    if (spawnData.type = 'sweeper') {
+    if (spawnData.type === 'sweeper') {
       var spawn = gameplay.game.add.existing(new Sweeper(gameplay.game, spawnData));
       gameplay.monsters.addChild(spawn);
       gameplay.monsters.addToHash(spawn);
 
-    } else if (spawnData.type = 'chaser') {
+    } else if (spawnData.type === 'chaser') {
       var spawn = gameplay.game.add.existing(new Chaser(gameplay.game, spawnData));
       gameplay.monsters.addChild(spawn);
       gameplay.monsters.addToHash(spawn);
