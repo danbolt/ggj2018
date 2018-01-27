@@ -20,11 +20,11 @@ Gameplay.prototype.create = function() {
   this.map.setCollisionByExclusion([], true, this.foreground);
   this.game.physics.enable(this.foreground, Phaser.Physics.ARCADE);
 
-  this.player = new Player(this.game, 100, 100);
-  this.game.add.existing(this.player);
-
   spawnPushblocks(this);
   spawnPickups(this);
+
+  this.player = new Player(this.game, 100, 100);
+  this.game.add.existing(this.player);
 };
 Gameplay.prototype.update = function () {
   this.game.physics.arcade.collide(this.player, this.foreground);
@@ -42,7 +42,7 @@ function spawnPushblocks(gameplay) {
 
   gameplay.map.objects.blocks.forEach(function (spawnData) {
     if (spawnData.type = 'pushBlock') {
-      var block = gameplay.game.add.existing(new PushBlock(gameplay.game, spawnData.x, spawnData.y));
+      var block = gameplay.game.add.existing(new PushBlock(gameplay.game, spawnData.x + 8, spawnData.y + 8, gameplay.map, gameplay.foreground));
       gameplay.pushblocks.addChild(block);
       gameplay.pushblocks.addToHash(block);
     }
@@ -50,8 +50,8 @@ function spawnPushblocks(gameplay) {
 };
 
 function updatePushblocks(gameplay) {
-  gameplay.game.physics.arcade.overlap(gameplay.player, gameplay.pushblocks, function (player, pushblock) {
-    pushblock.pushedFrom(player.x, player.y);
+  gameplay.game.physics.arcade.collide(gameplay.player, gameplay.pushblocks, function (player, pushblock) {
+    pushblock.pushedFrom(gameplay.player.body.velocity);
   }, undefined, gameplay);
 };
 
