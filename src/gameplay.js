@@ -21,11 +21,10 @@ Gameplay.prototype.create = function() {
   this.map.setCollisionByExclusion([], true, this.foreground);
   this.game.physics.enable(this.foreground, Phaser.Physics.ARCADE);
 
+  this.player = new Player(this.game, 100, 100);
   spawnPushblocks(this);
   spawnPickups(this);
   spawnMonsters(this);
-
-  this.player = new Player(this.game, 100, 100);
   this.game.add.existing(this.player);
 };
 Gameplay.prototype.update = function () {
@@ -80,12 +79,12 @@ function spawnMonsters(gameplay) {
   gameplay.map.objects.monsters.forEach(function (spawnData) {
 
     if (spawnData.type === 'sweeper') {
-      var spawn = gameplay.game.add.existing(new Sweeper(gameplay.game, spawnData));
+      var spawn = gameplay.game.add.existing(new Sweeper(gameplay.game, gameplay.player, spawnData));
       gameplay.monsters.addChild(spawn);
       gameplay.monsters.addToHash(spawn);
 
     } else if (spawnData.type === 'chaser') {
-      var spawn = gameplay.game.add.existing(new Chaser(gameplay.game, spawnData));
+      var spawn = gameplay.game.add.existing(new Chaser(gameplay.game, gameplay.player, spawnData));
       gameplay.monsters.addChild(spawn);
       gameplay.monsters.addToHash(spawn);
     }

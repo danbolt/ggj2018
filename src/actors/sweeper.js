@@ -1,6 +1,5 @@
-var Sweeper = function (game, spawnData) {
+var Sweeper = function (game, player, spawnData) {
   Phaser.Sprite.call(this, game, spawnData.x, spawnData.y, 'coloured_squares', 7);
-  this.game = game;
   this.startX = spawnData.x;
   this.destinationX = spawnData.properties.destinationX || this.startX;
   this.speed = spawnData.properties.speed || 1;
