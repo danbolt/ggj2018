@@ -6,6 +6,12 @@ This is a game created by Dan and Jason for Global Game Jam 2018.
 
 We were inspired by [Adventures of Lolo](https://en.wikipedia.org/wiki/Adventures_of_Lolo).
 
+# How to Install
+
+Host the game files on an http server to play. Static hosting is all that is required, as there is no web service component to this project.
+
+To play locally, consider `npm install -g http-server`, running `http server` under the project root directory, and opening `http://localhost:8080/` in a web browser. Alternatively, you may be able to run `python -m SimpleHTTPServer` and open `http://localhost:8000`.
+
 # Tech Stack / Tools
 
 - Game runs in JavaScript using [Phaser](http://phaser.io/)
