@@ -109,6 +109,21 @@
                  "width":16,
                  "x":16,
                  "y":160
+                }, 
+                {
+                 "height":16,
+                 "id":48,
+                 "name":"chaser",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"chaser",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":32
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -250,7 +265,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":48,
+ "nextobjectid":49,
  "orientation":"orthogonal",
  "properties":
     {
