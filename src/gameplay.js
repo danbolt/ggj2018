@@ -249,6 +249,9 @@ function updateMonsters(gameplay) {
     if (monster.pushedFrom) {
       monster.pushedFrom(gameplay.player.body.velocity);
     }
+    if (monster.onCollision) {
+      monster.onCollision(player);
+    }
   }, undefined, gameplay);
 };
 
