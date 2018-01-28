@@ -49,6 +49,10 @@ Gameplay.prototype.create = function() {
       this.game.state.start('Gameplay');
     }
   }, this);
+
+  if (!this.exit) {
+    console.log("warning: level has no exit");
+  }
 };
 Gameplay.prototype.update = function () {
   this.game.physics.arcade.collide(this.player, this.foreground);
@@ -58,7 +62,7 @@ Gameplay.prototype.update = function () {
   updateMonsters(this);
 
   // win level condition
-  if (this.exit.data.unlocked === true) {
+  if (this.exit && this.exit.data.unlocked === true) {
     this.game.physics.arcade.overlap(this.player, this.exit, function () {
       this.game.state.start('Gameplay');
     }, undefined, this);
@@ -159,6 +163,15 @@ function spawnEntity(gameplay, spawnData) {
     var spawn = gameplay.game.add.existing(new Slime(gameplay.game, spawnData.x + 8, spawnData.y + 8));
     gameplay.monsters.addChild(spawn);
     gameplay.monsters.addToHash(spawn);
+
+  } else if (spawnData.type === 'exit') {
+    var spawn = gameplay.game.add.existing(new LevelExit(gameplay.game, spawnData.x, spawnData.y));
+
+    if (gameplay.exit) {
+      console.log("warning: multiple exits in the level");
+    } else {
+      gameplay.exit = spawn;
+    }
   }
 };
 
@@ -209,6 +222,6 @@ function spawnMisc(gameplay) {
   gameplay.misc = gameplay.game.add.group();
 
   gameplay.map.objects.misc.forEach(function (spawnData) {
-    this.exit = gameplay.game.add.existing(new LevelExit(gameplay.game, spawnData.x, spawnData.y));
+    spawnEntity(gameplay, spawnData);
   }, gameplay);
 };
