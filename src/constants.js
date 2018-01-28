@@ -21,6 +21,14 @@ var fragSrc =
      void main( void ) {
         vec2 pos = vTextureCoord;
         vec2 center = vec2(0.5, 0.5);
+
+        if (sin(time / 2.0) > 0.8) {
+          if (pos.y > (0.85 + (cos(time) * 0.02) + 0.03 * sin(time * 5.0))) {
+            pos.x = pos.x + 0.01 + sin(time * 5.0) * 0.01;
+          }
+          
+          pos.y = pos.y + (0.004 * cos(time * 6.7));
+        }
         
         float theta = atan(pos.y - center.y, pos.x - center.x) ;
         float d = length(pos - center) - 0.009;
