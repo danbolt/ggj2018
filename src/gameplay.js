@@ -3,6 +3,7 @@ var Gameplay = function () {
   this.background = null;
   this.foreground = null;
   this.player = null;
+  this.playerSpawn = null;
   this.pushblocks = null;
   this.pickups = null;
   this.ui = null;
@@ -37,6 +38,13 @@ Gameplay.prototype.create = function() {
   spawnPickups(this);
   spawnMonsters(this);
   this.game.add.existing(this.player);
+
+  if (this.playerSpawn) {
+    this.player.x = this.playerSpawn.x;
+    this.player.y = this.playerSpawn.y;
+  } else {
+    console.log("warning: level has no player spawn");
+  }
 
   this.uiSetup();
   this.scoreSetup();
@@ -172,6 +180,9 @@ function spawnEntity(gameplay, spawnData) {
     } else {
       gameplay.exit = spawn;
     }
+
+  } else if (spawnData.type === 'playerSpawn') {
+    gameplay.playerSpawn = spawnData;
   }
 };
 
