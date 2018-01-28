@@ -3,6 +3,7 @@ var Gameplay = function () {
   this.background = null;
   this.foreground = null;
   this.player = null;
+  this.playerSpawn = null;
   this.pushblocks = null;
   this.pickups = null;
   this.ui = null;
@@ -24,7 +25,10 @@ Gameplay.prototype.preload = function() {
   //
 };
 Gameplay.prototype.create = function() {
-  this.map = this.game.add.tilemap('sandbox');
+  this.urlParams = getUrlParams();
+
+  var startingLevel = this.urlParams.level || 'sandbox';
+  this.map = this.game.add.tilemap(startingLevel);
   this.map.addTilesetImage('16x16SquareSheet', 'coloured_squares_tiles');
   this.background = this.map.createLayer('background');
   this.foreground = this.map.createLayer('foreground');
@@ -37,6 +41,13 @@ Gameplay.prototype.create = function() {
   spawnPickups(this);
   spawnMonsters(this);
   this.game.add.existing(this.player);
+
+  if (this.playerSpawn) {
+    this.player.x = this.playerSpawn.x;
+    this.player.y = this.playerSpawn.y;
+  } else {
+    console.log("warning: level has no player spawn");
+  }
 
   this.uiSetup();
   this.scoreSetup();
@@ -137,6 +148,17 @@ Gameplay.prototype.shutdown = function () {
   this.exit = null;
 };
 
+function getUrlParams() {
+  var paramStr = window.location.search.substr(1);
+  if (paramStr == null || paramStr == "") { return {}; }
+  var result = {}
+  paramStr.split("&").forEach(function (paramPairStr) {
+    var paramPairArr = paramPairStr.split("=");
+    result[paramPairArr[0]] = paramPairArr[1];
+  });
+  return result;
+};
+
 function spawnEntity(gameplay, spawnData) {
 
   if (spawnData.type === 'pushBlock') {
@@ -171,6 +193,13 @@ function spawnEntity(gameplay, spawnData) {
       console.log("warning: multiple exits in the level");
     } else {
       gameplay.exit = spawn;
+    }
+
+  } else if (spawnData.type === 'playerSpawn') {
+    if (gameplay.playerSpawn) {
+      console.log("warning: multiple player spawns in the level");
+    } else {
+      gameplay.playerSpawn = spawnData;
     }
   }
 };
