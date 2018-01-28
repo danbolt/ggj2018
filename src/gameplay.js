@@ -254,6 +254,8 @@ function updatePickups(gameplay) {
     this.itemsCollected++;
     this.jpegsText.text = this.itemsCollected + '/' + this.itemsOnMap;
     this.updateScore(10);
+
+    player.animations.play('get_wifi');
   }, undefined, gameplay);
 };
 
@@ -268,8 +270,8 @@ function updateMonsters(gameplay) {
     if (monster.pushedFrom) {
       monster.pushedFrom(gameplay.player.body.velocity);
     }
-    if (monster.onCollision) {
-      player.kill();
+    if (monster.onCollision && player.isDead === false) {
+      player.animations.play('fall_down');
     }
   }, undefined, gameplay);
 
