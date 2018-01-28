@@ -71,7 +71,7 @@ Load.prototype.create = function() {
   //this.game.bgmMelody.play();
 
 	soundEffectsToLoad.forEach(function (sname) {
-    SoundBank[sname] = this.game.add.audio(sname, 0.8, false);
+    SoundBank[sname] = this.game.add.audio(sname, 0.6, false);
   }, this);
 
  	this.game.state.start('TitleScreen');
