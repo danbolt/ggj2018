@@ -6,7 +6,7 @@ TitleScreen.prototype.create = function () {
     this.game.height * 0.5,
     'font',
     'Press R to start',
-    16);
+    8);
   titleText.align = 'center';
   titleText.anchor.x = 0.5;
 };
