@@ -79,11 +79,9 @@ Gameplay.prototype.create = function() {
     }
   }, this);
 
-  this.game.input.keyboard.onPressCallback = function (key) {
-    if (key == "r") {
+  this.game.input.keyboard.addKey(Phaser.KeyCode.R).onUp.add(function () {
       this.game.state.start('Gameplay'); // restart level
-    }
-  };
+  }, this);
 };
 Gameplay.prototype.update = function () {
   this.game.physics.arcade.collide(this.player, this.foreground);
@@ -275,6 +273,21 @@ function updateMonsters(gameplay) {
     }
     if (monster.onCollision && player.isDead === false) {
       player.animations.play('fall_down');
+
+      // add a little "ya died" dialog
+      this.game.time.events.add(1000, function () {
+        var v = this.game.add.sprite(this.map.widthInPixels / 2, this.game.height / 2, 'coloured_squares', 0);
+        v.anchor.set(0.5);
+        v.tint = 0x000000;
+        var t = this.game.add.tween(v);
+        t.to( {width: 200, height: 64}, 500, Phaser.Easing.Cubic.InOut);
+        t.onComplete.add(function () {
+          var text = this.game.add.bitmapText(this.map.widthInPixels / 2, this.game.height / 2, 'font', 'aww dang!\nit didn\'t go too well!\n\n\npress r to go again', 8)
+          text.anchor.set(0.5);
+          text.align = 'center';
+        }, this);
+        t.start();
+      }, this);
     }
   }, undefined, gameplay);
 
