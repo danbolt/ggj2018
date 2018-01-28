@@ -5,10 +5,10 @@ TitleScreen.prototype.create = function () {
     this.game.width * 0.5,
     this.game.height * 0.75,
     'font',
-    'Press R to start',
+    'Get signal to download cat pics!\n\n\nPress R to start',
     8);
   titleText.align = 'center';
-  titleText.anchor.x = 0.5;
+  titleText.anchor.set(0.5);
   titleText.visible = false;
 
   this.game.input.keyboard.addKey(Phaser.KeyCode.R).onUp.add(function (key) {
