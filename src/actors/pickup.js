@@ -1,5 +1,5 @@
 var Pickup = function (game, x, y) {
-  Phaser.Sprite.call(this, game, x, y, 'coloured_squares', 6);
+  Phaser.Sprite.call(this, game, x, y, 'coloured_squares', 2);
   this.anchor.set(0.5, 0.5);
   this.game.physics.enable(this, Phaser.Physics.ARCADE);
 };

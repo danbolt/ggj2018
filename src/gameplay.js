@@ -182,7 +182,7 @@ function spawnEntity(gameplay, spawnData) {
     gameplay.monsters.addToHash(spawn);
 
   } else if (spawnData.type === 'slime') {
-    var spawn = gameplay.game.add.existing(new Slime(gameplay.game, spawnData.x + 8, spawnData.y + 8));
+    var spawn = gameplay.game.add.existing(new Slime(gameplay, spawnData));
     gameplay.monsters.addChild(spawn);
     gameplay.monsters.addToHash(spawn);
 
@@ -245,6 +245,11 @@ function spawnMonsters(gameplay) {
 };
 
 function updateMonsters(gameplay) {
+  gameplay.game.physics.arcade.collide(gameplay.player, gameplay.monsters, function (player, monster) {
+    if (monster.pushedFrom) {
+      monster.pushedFrom(gameplay.player.body.velocity);
+    }
+  }, undefined, gameplay);
 };
 
 function spawnMisc(gameplay) {
