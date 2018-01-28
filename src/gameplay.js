@@ -80,7 +80,8 @@ Gameplay.prototype.create = function() {
   }, this);
 
   this.game.input.keyboard.addKey(Phaser.KeyCode.R).onUp.add(function () {
-      this.game.state.start('Gameplay'); // restart level
+    SoundBank['select'].play();
+    this.game.state.start('Gameplay'); // restart level
   }, this);
 };
 Gameplay.prototype.update = function () {
@@ -94,6 +95,7 @@ Gameplay.prototype.update = function () {
   if (this.exit && this.exit.data.unlocked === true) {
     this.game.physics.arcade.overlap(this.player, this.exit, function () {
       this.currentLevelIndex++;
+      SoundBank['win'].play();
       if (this.currentLevelIndex >= this.levelProgression.length) {
         this.game.state.start('WinScreen');
         this.currentLevelIndex = 0;
@@ -255,6 +257,8 @@ function updatePickups(gameplay) {
     this.itemsCollected++;
     this.jpegsText.text = this.itemsCollected + '/' + this.itemsOnMap;
     this.updateScore(10);
+    SoundBank['download'].play();
+    this.game.time.events.add(1800, function () { SoundBank['cat' + ~~(Math.random() * 3)].play(); }, this);
 
     player.animations.play('get_wifi');
   }, undefined, gameplay);
@@ -270,6 +274,7 @@ function updateMonsters(gameplay) {
   gameplay.game.physics.arcade.collide(gameplay.player, gameplay.monsters, function (player, monster) {
     if (monster.onCollision && player.isDead === false) {
       player.animations.play('fall_down');
+      SoundBank['death'].play();
 
       // add a little "ya died" dialog
       this.game.time.events.add(1000, function () {

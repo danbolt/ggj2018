@@ -8,5 +8,5 @@ var Directions = {
 };
 
 // Add the .WAV file names in asset/sfx here. They will be loaded in the `load.js` file.
-var soundEffectsToLoad = ['select'];
+var soundEffectsToLoad = ['death', 'download', 'win', 'cat0', 'cat1', 'cat2', 'select'];
 var SoundBank = {};
