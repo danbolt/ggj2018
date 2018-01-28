@@ -97,9 +97,10 @@ Gameplay.prototype.update = function () {
     this.game.physics.arcade.overlap(this.player, this.exit, function () {
       this.currentLevelIndex++;
       if (this.currentLevelIndex >= this.levelProgression.length) {
-        console.log('game finished'); // TODO: fire up a UI state
+        this.game.state.start('WinScreen');
+      } else {
+        this.game.state.start('Gameplay');
       }
-      this.game.state.start('Gameplay');
     }, undefined, this);
   };
 };

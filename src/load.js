@@ -69,5 +69,5 @@ Load.prototype.create = function() {
     SoundBank[sname] = this.game.add.audio(sname, 0.8, false);
   }, this);
 
- 	this.game.state.start('Gameplay');
+ 	this.game.state.start('TitleScreen');
 };
