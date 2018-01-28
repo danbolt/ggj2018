@@ -22,6 +22,34 @@ var Player = function (game, x, y) {
   this.moveSpeed = 75;
 
   this.isDead = false;
+
+  // cute animation for getting the cat pics
+  var sparks = this.game.add.group();
+  for (var i = 0; i < 20; i++) {
+    var newSpark = this.game.add.sprite(0, 0, 'coloured_squares', 24);
+    newSpark.kill();
+    sparks.addChild(newSpark);
+  }
+  this.animations.getAnimation('get_wifi').onStart.add(function () {
+    for (var i = 0; i < sparks.children.length; i++) {
+      var spark = sparks.children[i];
+      spark.revive();
+      spark.position.set(this.game.width / 4 + (this.game.width * 0.5 * Math.random()), -32);
+
+      var t = this.game.add.tween(spark.position);
+      t.to( {x: [(this.game.width * 0.1) + (this.game.width * 0.5 * Math.random()), this.x + 16], y: [this.y + 16]}, 600 + (Math.random() * 100), Phaser.Easing.Linear.None, false, Math.random() * 300);
+      t.onComplete.add(function () {
+        spark.kill();
+      }, this);
+      t.start();
+
+      spark.scale.set(0.6 + Math.random() * 0.4);
+      var ts = this.game.add.tween(spark.scale);
+      var rs = Math.random() * 0.2;
+      ts.to({x: [1.1 + rs, 0], y: [1.1 + rs, 0]}, 700);
+      ts.start();
+    }
+  }, this);
 };
 Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
