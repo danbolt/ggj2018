@@ -271,6 +271,8 @@ function updateMonsters(gameplay) {
       player.kill();
     }
   }, undefined, gameplay);
+
+  gameplay.game.physics.arcade.collide(gameplay.monsters, gameplay.foreground);
 };
 
 function spawnMisc(gameplay) {
