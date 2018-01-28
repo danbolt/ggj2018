@@ -12,10 +12,13 @@ WinScreen.prototype.create = function () {
   titleText.align = 'center';
   titleText.anchor.x = 0.5;
 };
+WinScreen.prototype.shutdown = function () {
+  this.game.input.keyboard.onPressCallback = null;
+};
 WinScreen.prototype.update = function () {
- // this.game.input.keyboard.onPressCallback = function (key) {
- //   if (key == 'r') {
- //     this.game.state.start('TitleScreen');
- //   }
- // };
+ this.game.input.keyboard.onPressCallback = function (key) {
+   if (key == 'r') {
+     this.game.state.start('TitleScreen');
+   }
+ };
 };

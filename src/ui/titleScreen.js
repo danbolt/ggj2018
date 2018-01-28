@@ -10,6 +10,9 @@ TitleScreen.prototype.create = function () {
   titleText.align = 'center';
   titleText.anchor.x = 0.5;
 };
+TitleScreen.prototype.shutdown = function () {
+  this.game.input.keyboard.onPressCallback = null;
+};
 TitleScreen.prototype.update = function () {
   this.game.input.keyboard.onPressCallback = function (key) {
     if (key == 'r') {

@@ -164,6 +164,7 @@ Gameplay.prototype.uiSetup = function () {
   this.ui.addChild(timeLeftText);
 };
 Gameplay.prototype.shutdown = function () {
+  this.game.input.keyboard.onPressCallback = null;
   this.map = null;
   this.foreground = null;
   this.ui = null;
