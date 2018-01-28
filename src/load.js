@@ -28,11 +28,11 @@ Preload.prototype.preload = function() {
   // this.game.load.bitmapFont('font', 'asset/font/font.png', 'asset/font/font.json');
 
   // Font is Newsgeek by
-  this.game.load.bitmapFont('newsgeek', 'asset/font/newsgeek.png', 'asset/font/newsgeek.json');
+  this.game.load.bitmapFont('font', 'asset/font/font.png', 'asset/font/font.json');
 };
 Preload.prototype.create = function() {
 
-  var instructions = this.game.add.bitmapText(this.game.width / 2, this.game.height / 2 , 'newsgeek', 'loading...\n\nPlease wait!', 16);
+  var instructions = this.game.add.bitmapText(this.game.width / 2, this.game.height / 2 , 'font', 'loading...\n\nPlease wait!', 16);
   instructions.align = 'center';
   instructions.anchor.x = 0.5;
 
