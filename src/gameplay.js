@@ -64,6 +64,12 @@ Gameplay.prototype.create = function() {
   if (!this.exit) {
     console.log("warning: level has no exit");
   }
+
+  this.game.input.keyboard.onPressCallback = function (key) {
+    if (key == "r") {
+      this.game.state.start('Gameplay'); // restart level
+    }
+  };
 };
 Gameplay.prototype.update = function () {
   this.game.physics.arcade.collide(this.player, this.foreground);
