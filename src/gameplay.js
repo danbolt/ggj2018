@@ -276,6 +276,11 @@ function spawnMonsters(gameplay) {
 };
 
 function updateMonsters(gameplay) {
+  // don't move the monsters when the player has a fun cosmetic animation
+  gameplay.monsters.forEach(function (monster) {
+    monster.body.enable = this.player.animations.currentAnim.name !== 'get_wifi' && this.player.isDead === false;
+  }, gameplay);
+
   gameplay.game.physics.arcade.collide(gameplay.player, gameplay.monsters, function (player, monster) {
     if (monster.onCollision && player.isDead === false) {
       player.animations.play('fall_down');
