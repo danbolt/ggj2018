@@ -1,10 +1,10 @@
-var Slime = function (game, x, y, map, foreground) {
-  Phaser.Sprite.call(this, game, x, y, 'coloured_squares', 5);
+var Slime = function (gameplay, spawnData) {
+  Phaser.Sprite.call(this, gameplay.game, spawnData.x + 8, spawnData.y + 8, 'coloured_squares', 6);
   this.game.physics.enable(this, Phaser.Physics.ARCADE);
   this.anchor.set(0.5, 0.5);
 
-  this.map = map;
-  this.foreground = foreground;
+  this.map = gameplay.map;
+  this.foreground = gameplay.foreground;
 
   this.body.moves = false;
 };

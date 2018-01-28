@@ -4,7 +4,97 @@
          "draworder":"topdown",
          "height":15,
          "name":"monsters",
-         "objects":[],
+         "objects":[
+                {
+                 "height":16,
+                 "id":37,
+                 "name":"slime",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"slime",
+                 "visible":true,
+                 "width":16,
+                 "x":96,
+                 "y":176
+                }, 
+                {
+                 "height":16,
+                 "id":39,
+                 "name":"slime",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"slime",
+                 "visible":true,
+                 "width":16,
+                 "x":112,
+                 "y":192
+                }, 
+                {
+                 "height":16,
+                 "id":40,
+                 "name":"slime",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"slime",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":176
+                }, 
+                {
+                 "height":16,
+                 "id":41,
+                 "name":"slime",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"slime",
+                 "visible":true,
+                 "width":16,
+                 "x":48,
+                 "y":48
+                }, 
+                {
+                 "height":16,
+                 "id":42,
+                 "name":"slime",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"slime",
+                 "visible":true,
+                 "width":16,
+                 "x":112,
+                 "y":32
+                }, 
+                {
+                 "height":16,
+                 "id":43,
+                 "name":"slime",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"slime",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":96
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -72,7 +162,7 @@
                  "visible":true,
                  "width":16,
                  "x":192,
-                 "y":160
+                 "y":144
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -115,7 +205,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":37,
+ "nextobjectid":44,
  "orientation":"orthogonal",
  "properties":
     {
