@@ -22,6 +22,7 @@ var Gameplay = function () {
   this.levelProgression = [
     'cake_walk',
     'slime_world',
+    'coast_to_coast',
     'gauntlet',
     'spiral',
     'push_maze'
