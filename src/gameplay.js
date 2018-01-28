@@ -182,7 +182,11 @@ function spawnEntity(gameplay, spawnData) {
     }
 
   } else if (spawnData.type === 'playerSpawn') {
-    gameplay.playerSpawn = spawnData;
+    if (gameplay.playerSpawn) {
+      console.log("warning: multiple player spawns in the level");
+    } else {
+      gameplay.playerSpawn = spawnData;
+    }
   }
 };
 
