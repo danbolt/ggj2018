@@ -268,9 +268,6 @@ function spawnMonsters(gameplay) {
 
 function updateMonsters(gameplay) {
   gameplay.game.physics.arcade.collide(gameplay.player, gameplay.monsters, function (player, monster) {
-    if (monster.onTouchedPlayer) {
-      monster.onTouchedPlayer();
-    }
     if (monster.onCollision && player.isDead === false) {
       player.animations.play('fall_down');
 
@@ -290,6 +287,9 @@ function updateMonsters(gameplay) {
       }, this);
     }
   }, function (player, monster) {
+    if (monster.onTouchedPlayer) {
+      monster.onTouchedPlayer();
+    }
     if (monster.pushedFrom) {
       monster.pushedFrom(gameplay.player.body.velocity);
       return false;
