@@ -83,6 +83,9 @@ Gameplay.prototype.create = function() {
     SoundBank['select'].play();
     this.game.state.start('Gameplay'); // restart level
   }, this);
+
+  var filter = new Phaser.Filter(this.game, undefined, fragSrc);
+  this.game.world.filters = [ filter ];
 };
 Gameplay.prototype.update = function () {
   this.game.physics.arcade.collide(this.player, this.foreground);
@@ -104,6 +107,8 @@ Gameplay.prototype.update = function () {
       }
     }, undefined, this);
   };
+
+  this.game.world.filters[0].update();
 };
 Gameplay.prototype.scoreSetup = function () {
   this.itemsCollected = 0;

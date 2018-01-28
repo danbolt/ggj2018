@@ -10,3 +10,24 @@ var Directions = {
 // Add the .WAV file names in asset/sfx here. They will be loaded in the `load.js` file.
 var soundEffectsToLoad = ['death', 'download', 'win', 'cat0', 'cat1', 'cat2', 'select'];
 var SoundBank = {};
+
+var fragSrc =
+    `precision mediump float;
+     varying vec2 vTextureCoord;
+     varying vec4 vColor;
+     uniform float time;
+     uniform sampler2D uSampler;
+
+     void main( void ) {
+        vec2 pos = vTextureCoord;
+        vec2 center = vec2(0.5, 0.5);
+        
+        float theta = atan(pos.y - center.y, pos.x - center.x) ;
+        float d = length(pos - center) - 0.009;
+
+        pos = vec2(d * cos(theta) + center.x, d * sin(theta) + center.y);
+        
+        gl_FragColor = (mod(gl_FragCoord.y,2.0) * texture2D(uSampler, pos) + (6.0 * texture2D(uSampler, pos))) / 7.0;
+
+      }
+    `;

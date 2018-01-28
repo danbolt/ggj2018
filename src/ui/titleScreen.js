@@ -16,6 +16,13 @@ TitleScreen.prototype.create = function () {
       SoundBank['select'].play();
   }, this);
 
+  var a = this.game.add.sprite(0, 0, 'coloured_squares', 0);
+  a.tint = 0x000000;
+  a.width = this.game.width;
+  var b = this.game.add.sprite(0, this.game.height - 16, 'coloured_squares', 0);
+  b.tint = 0x000000;
+  b.width = this.game.width;
+
   for (var i = 0; i < 2; i++) {
     var img = this.game.add.sprite(i === 0 ? -200 : (this.game.width + 200), 84, 'logo', i);
     img.anchor.set(0.5);
@@ -33,10 +40,15 @@ TitleScreen.prototype.create = function () {
       }, this);
     }, this);
     t.start();
+
+    // add filter
+    var filter = new Phaser.Filter(this.game, null, fragSrc);
+    this.game.world.filters = [ filter ];
   }
 };
 TitleScreen.prototype.shutdown = function () {
   this.game.input.keyboard.onPressCallback = null;
 };
 TitleScreen.prototype.update = function () {
+  this.game.world.filters[0].update();
 };

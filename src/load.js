@@ -38,6 +38,9 @@ Preload.prototype.create = function() {
 
   this.game.input.gamepad.start();
 
+  var filter = new Phaser.Filter(this.game, null, fragSrc);
+  this.game.world.filters = [ filter ];
+
   this.game.state.start('Load', false);
 };
 
