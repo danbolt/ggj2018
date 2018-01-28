@@ -1,6 +1,5 @@
 var WinScreen = function () {
-};
-WinScreen.prototype.init = function () {
+  this.autoAdvanceTimer = 0;
 };
 WinScreen.prototype.create = function () {
   var titleText = this.game.add.bitmapText(
@@ -16,9 +15,16 @@ WinScreen.prototype.shutdown = function () {
   this.game.input.keyboard.onPressCallback = null;
 };
 WinScreen.prototype.update = function () {
- this.game.input.keyboard.onPressCallback = function (key) {
-   if (key == 'r') {
-     this.game.state.start('TitleScreen');
-   }
- };
+  this.game.input.keyboard.onPressCallback = function (key) {
+    if (key == 'r') {
+      this.game.state.start('TitleScreen');
+      return;
+    }
+  };
+
+  this.autoAdvanceTimer += this.game.time.elapsed;
+  if (this.autoAdvanceTimer > 20000) {
+      this.game.state.start('TitleScreen');
+      return;
+  }
 };
