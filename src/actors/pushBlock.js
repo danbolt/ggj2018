@@ -1,5 +1,5 @@
 var PushBlock = function (game, x, y, map, foreground) {
-  Phaser.Sprite.call(this, game, x, y, 'coloured_squares', 5);
+  Phaser.Sprite.call(this, game, x, y, 'coloured_squares', 18);
   this.game.physics.enable(this, Phaser.Physics.ARCADE);
   this.anchor.set(0.5, 0.5);
 
