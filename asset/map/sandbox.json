@@ -34,6 +34,21 @@
                  "width":16,
                  "x":80,
                  "y":32
+                }, 
+                {
+                 "height":16,
+                 "id":29,
+                 "name":"slime1",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"slime",
+                 "visible":true,
+                 "width":16,
+                 "x":112,
+                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -145,7 +160,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":29,
+ "nextobjectid":30,
  "orientation":"orthogonal",
  "properties":
     {
