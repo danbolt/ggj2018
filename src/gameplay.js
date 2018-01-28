@@ -119,15 +119,40 @@ Gameplay.prototype.shutdown = function () {
   this.countdownTimer = null;
 };
 
+function spawnEntity(gameplay, spawnData) {
+
+  if (spawnData.type === 'pushBlock') {
+    var spawn = gameplay.game.add.existing(new PushBlock(gameplay.game, spawnData.x + 8, spawnData.y + 8, gameplay.map, gameplay.foreground));
+    gameplay.pushblocks.addChild(spawn);
+    gameplay.pushblocks.addToHash(spawn);
+
+  } else if (spawnData.type === 'pickup') {
+    var spawn = gameplay.game.add.existing(new Pickup(gameplay.game, spawnData.x + 8, spawnData.y + 8));
+    gameplay.pickups.addChild(spawn);
+    gameplay.pickups.addToHash(spawn);
+
+  } else if (spawnData.type === 'sweeper') {
+    var spawn = gameplay.game.add.existing(new Sweeper(gameplay.game, gameplay.player, spawnData));
+    gameplay.monsters.addChild(spawn);
+    gameplay.monsters.addToHash(spawn);
+
+  } else if (spawnData.type === 'chaser') {
+    var spawn = gameplay.game.add.existing(new Chaser(gameplay.game, gameplay.player, spawnData));
+    gameplay.monsters.addChild(spawn);
+    gameplay.monsters.addToHash(spawn);
+
+  } else if (spawnData.type === 'slime') {
+    var spawn = gameplay.game.add.existing(new Slime(gameplay.game, spawnData.x + 8, spawnData.y + 8));
+    gameplay.monsters.addChild(spawn);
+    gameplay.monsters.addToHash(spawn);
+  }
+};
+
 function spawnPushblocks(gameplay) {
   gameplay.pushblocks = gameplay.game.add.group();
 
   gameplay.map.objects.blocks.forEach(function (spawnData) {
-    if (spawnData.type === 'pushBlock') {
-      var block = gameplay.game.add.existing(new PushBlock(gameplay.game, spawnData.x + 8, spawnData.y + 8, gameplay.map, gameplay.foreground));
-      gameplay.pushblocks.addChild(block);
-      gameplay.pushblocks.addToHash(block);
-    }
+    spawnEntity(gameplay, spawnData);
   }, gameplay);
 };
 
@@ -141,9 +166,7 @@ function spawnPickups(gameplay) {
   gameplay.pickups = gameplay.game.add.group();
 
   gameplay.map.objects.pickups.forEach(function (spawnData) {
-    var spawn = gameplay.game.add.existing(new Pickup(gameplay.game, spawnData.x + 8, spawnData.y + 8));
-    gameplay.pickups.addChild(spawn);
-    gameplay.pickups.addToHash(spawn);
+    spawnEntity(gameplay, spawnData);
   }, gameplay);
 };
 
@@ -161,17 +184,7 @@ function spawnMonsters(gameplay) {
   gameplay.monsters = gameplay.game.add.group();
 
   gameplay.map.objects.monsters.forEach(function (spawnData) {
-
-    if (spawnData.type === 'sweeper') {
-      var spawn = gameplay.game.add.existing(new Sweeper(gameplay.game, gameplay.player, spawnData));
-      gameplay.monsters.addChild(spawn);
-      gameplay.monsters.addToHash(spawn);
-
-    } else if (spawnData.type === 'chaser') {
-      var spawn = gameplay.game.add.existing(new Chaser(gameplay.game, gameplay.player, spawnData));
-      gameplay.monsters.addChild(spawn);
-      gameplay.monsters.addToHash(spawn);
-    }
+    spawnEntity(gameplay, spawnData);
   }, gameplay);
 };
 
