@@ -25,13 +25,13 @@ Slime.prototype.pushedFrom = function(directon) {
 
   directon = Phaser.Point.normalize(directon);
   var theta = Math.atan2(directon.y, directon.x);
-  if (Math.abs(theta) < Math.PI * 0.25) {
+  if (Math.abs(theta) <= Math.PI * 0.25) {
     directon.set(1, 0);
   } else if (theta < Math.PI * 0.75 && theta > Math.PI * 0.25) {
     directon.set(0, 1);
   } else if (theta > Math.PI * -0.75 && theta < Math.PI * -0.25) {
     directon.set(0, -1);
-  } else if (Math.abs(theta) > Math.PI * 0.75) {
+  } else if (Math.abs(theta) >= Math.PI * 0.75) {
     directon.set(-1, 0);
   }
 
