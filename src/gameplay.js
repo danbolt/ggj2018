@@ -250,7 +250,7 @@ function updateMonsters(gameplay) {
       monster.pushedFrom(gameplay.player.body.velocity);
     }
     if (monster.onCollision) {
-      monster.onCollision(player);
+      player.kill();
     }
   }, undefined, gameplay);
 };

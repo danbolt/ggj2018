@@ -4,6 +4,8 @@ var Chaser = function (game, player, spawnData) {
   this.player = player;
   this.moveSpeed = spawnData.properties.speed || 25;
 
+  this.onCollision = true;
+
   this.animations.add('down', [32, 33], 4, true);
   this.animations.add('up', [38, 39], 4, true);
   this.animations.add('right', [34, 35], 4, true);
