@@ -19,6 +19,7 @@ var levelsToLoad = [
   'gauntlet',
   'spiral',
   'cake_walk',
+  'coast_to_coast',
 ];
 
 var fragSrc =
