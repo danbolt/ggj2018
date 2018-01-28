@@ -291,7 +291,11 @@ function updateMonsters(gameplay) {
         t.start();
       }, this);
     }
-  }, function (player, monster) {  if (monster.pushedFrom) {
+  }, function (player, monster) {
+    if (monster.onTouchedPlayer) {
+      monster.onTouchedPlayer();
+    }
+    if (monster.pushedFrom) {
       monster.pushedFrom(gameplay.player.body.velocity);
       return false;
     }
