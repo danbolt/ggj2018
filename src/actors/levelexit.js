@@ -6,14 +6,11 @@ var LevelExit = function(game, x, y) {
 };
 LevelExit.prototype = Object.create(Phaser.Sprite.prototype);
 LevelExit.prototype.constructor = LevelExit;
-LevelExit.prototype.update = function () {
-  //
-};
 LevelExit.prototype.lock = function () {
   this.data.unlocked = false;
-  this.tint = 0xFFFFFF;
+  this.tint = 0x000000;
 };
 LevelExit.prototype.unlock = function () {
   this.data.unlocked = true;
-  this.tint = 0x000000;
+  this.tint = 0xFFFFFF;
 };

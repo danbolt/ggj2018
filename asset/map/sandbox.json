@@ -72,6 +72,33 @@
         {
          "draworder":"topdown",
          "height":15,
+         "name":"misc",
+         "objects":[
+                {
+                 "height":16,
+                 "id":28,
+                 "name":"exit",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":96,
+                 "y":128
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":15,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":15,
          "name":"blocks",
          "objects":[
                 {
@@ -118,7 +145,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":27,
+ "nextobjectid":29,
  "orientation":"orthogonal",
  "properties":
     {
