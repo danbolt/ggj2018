@@ -15,6 +15,7 @@ var Gameplay = function () {
   this.countdownTimer = null;
   this.score = 0;
   this.monsters = null;
+  this.exit = null;
 };
 Gameplay.prototype.init = function() {
   //
@@ -31,6 +32,7 @@ Gameplay.prototype.create = function() {
   this.game.physics.enable(this.foreground, Phaser.Physics.ARCADE);
 
   this.player = new Player(this.game, 100, 100);
+  spawnMisc(this);
   spawnPushblocks(this);
   spawnPickups(this);
   spawnMonsters(this);
@@ -54,6 +56,13 @@ Gameplay.prototype.update = function () {
   updatePushblocks(this);
   updatePickups(this);
   updateMonsters(this);
+
+  // win level condition
+  if (this.exit.data.unlocked === true) {
+    this.game.physics.arcade.overlap(this.player, this.exit, function () {
+      this.game.state.start('Gameplay');
+    }, undefined, this);
+  };
 };
 Gameplay.prototype.scoreSetup = function () {
   this.itemsCollected = 0;
@@ -76,6 +85,10 @@ Gameplay.prototype.updateScore = function (increment) {
 
   this.score += increment;
   this.scoreText.text = pad(this.score, 5);
+
+  if (this.itemsCollected === this.itemsOnMap) {
+    this.exit.unlock();
+  }
 };
 Gameplay.prototype.uiSetup = function () {
   var uiPaneWidth = this.game.width - this.map.widthInPixels;
@@ -117,6 +130,7 @@ Gameplay.prototype.shutdown = function () {
   this.jpegsText = null;
   this.timeText = null;
   this.countdownTimer = null;
+  this.exit = null;
 };
 
 function spawnPushblocks(gameplay) {
@@ -176,4 +190,12 @@ function spawnMonsters(gameplay) {
 };
 
 function updateMonsters(gameplay) {
+};
+
+function spawnMisc(gameplay) {
+  gameplay.misc = gameplay.game.add.group();
+
+  gameplay.map.objects.misc.forEach(function (spawnData) {
+    this.exit = gameplay.game.add.existing(new LevelExit(gameplay.game, spawnData.x, spawnData.y));
+  }, gameplay);
 };
