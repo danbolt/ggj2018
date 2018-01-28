@@ -51,7 +51,7 @@ Gameplay.prototype.create = function() {
   this.pickups = this.game.add.group();
   this.monsters = this.game.add.group();
 
-  this.player = new Player(this.game, 100, 100);
+  this.player = new Player(this.game, 100, 100, this.map, this.background);
   spawnMisc(this);
   spawnPushblocks(this);
   spawnPickups(this);
@@ -278,7 +278,7 @@ function spawnMonsters(gameplay) {
 };
 
 function updateMonsters(gameplay) {
-  // don't move the monsters when the player has a fun cosmetic animation
+  // conditionally disable monster motion
   gameplay.monsters.forEach(function (monster) {
     monster.body.enable = this.player.animations.currentAnim.name !== 'get_wifi' && this.player.isDead === false;
   }, gameplay);
