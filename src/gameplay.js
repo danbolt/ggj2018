@@ -17,6 +17,13 @@ var Gameplay = function () {
   this.score = 0;
   this.monsters = null;
   this.exit = null;
+
+  this.levelProgression = [
+    'sandbox',
+    'slime_world',
+    'push_maze'
+  ];
+  this.currentLevelIndex = 0;
 };
 Gameplay.prototype.init = function() {
   //
@@ -27,8 +34,10 @@ Gameplay.prototype.preload = function() {
 Gameplay.prototype.create = function() {
   this.urlParams = getUrlParams();
 
-  var startingLevel = this.urlParams.level || 'sandbox';
-  this.map = this.game.add.tilemap(startingLevel);
+  var levelName = this.urlParams.level ||
+    this.levelProgression[this.currentLevelIndex % this.levelProgression.length];
+
+  this.map = this.game.add.tilemap(levelName);
   this.map.addTilesetImage('16x16SquareSheet', 'coloured_squares_tiles');
   this.background = this.map.createLayer('background');
   this.foreground = this.map.createLayer('foreground');
@@ -54,6 +63,10 @@ Gameplay.prototype.create = function() {
     console.log("warning: level has no player spawn");
   }
 
+  if (!this.exit) {
+    console.log("warning: level has no exit");
+  }
+
   this.uiSetup();
   this.scoreSetup();
 
@@ -65,10 +78,6 @@ Gameplay.prototype.create = function() {
       this.game.state.start('Gameplay');
     }
   }, this);
-
-  if (!this.exit) {
-    console.log("warning: level has no exit");
-  }
 
   this.game.input.keyboard.onPressCallback = function (key) {
     if (key == "r") {
@@ -86,6 +95,10 @@ Gameplay.prototype.update = function () {
   // win level condition
   if (this.exit && this.exit.data.unlocked === true) {
     this.game.physics.arcade.overlap(this.player, this.exit, function () {
+      this.currentLevelIndex++;
+      if (this.currentLevelIndex >= this.levelProgression.length) {
+        console.log('game finished'); // TODO: fire up a UI state
+      }
       this.game.state.start('Gameplay');
     }, undefined, this);
   };
