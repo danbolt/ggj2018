@@ -1,4 +1,4 @@
-var Player = function (game, x, y) {
+var Player = function (game, x, y, map, background) {
   Phaser.Sprite.call(this, game, x, y, 'player', 1);
   this.game.physics.enable(this, Phaser.Physics.ARCADE);
   this.body.setSize(12, 12);
@@ -20,6 +20,9 @@ var Player = function (game, x, y) {
   this.animations.play('down');
 
   this.moveSpeed = 75;
+
+  this.map = map;
+  this.background = background;
 
   this.isDead = false;
 
@@ -82,6 +85,29 @@ Player.prototype.update = function () {
       if (!isMovingSideways) {
         this.animations.play('down');
       }
+    }
+  }
+
+
+  var currentFloorTile = this.map.getTileWorldXY(this.x + 8, this.y + 24, undefined, undefined, this.background, true);
+  if (currentFloorTile && currentFloorTile.index >= 45 && currentFloorTile.index <= 48) {
+    switch (currentFloorTile.index) {
+      case 45:
+        this.body.velocity.set(this.moveSpeed, 0);
+        this.position.y = (currentFloorTile.y - 1) * 16;
+      break;
+      case 46:
+        this.body.velocity.set(0, this.moveSpeed);
+        this.position.x = currentFloorTile.x * 16;
+      break;
+      case 47:
+        this.body.velocity.set(-this.moveSpeed, 0);
+        this.position.y = (currentFloorTile.y - 1) * 16;
+      break;
+      case 48:
+        this.body.velocity.set(0, -this.moveSpeed);
+        this.position.x = currentFloorTile.x * 16;
+      break;
     }
   }
 };
