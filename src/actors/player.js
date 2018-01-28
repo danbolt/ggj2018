@@ -9,7 +9,9 @@ var Player = function (game, x, y) {
   this.animations.add('left', [11, 12, 13, 14], 8, true);
   this.animations.add('up', [8, 9, 10, 9], 8, true);
 
-  this.animations.add('get_wifi', [16, 17, 18, 17], 8, true);
+  this.animations.add('get_wifi', [16, 17, 18, 17, 16, 17, 18, 17], 9, false).onComplete.add(function () {
+    this.animations.play('down');
+  }, this);
   this.animations.add('die', [22, 23, 24], 6, true);
   this.animations.add('fall_down', [19, 20, 21], 8, false).onComplete.add(function () {
     this.animations.play('die');
@@ -27,8 +29,9 @@ Player.prototype.update = function () {
   this.body.velocity.set(0, 0);
 
   this.isDead = this.animations.currentAnim.name === 'die' || this.animations.currentAnim.name === 'fall_down';
+  this.body.enable = !(this.isDead);
 
-  if (this.isDead === false) {
+  if (this.isDead === false && this.animations.currentAnim.name !== 'get_wifi') {
     var isMovingSideways = false;
     if (this.game.input.keyboard.isDown(Phaser.KeyCode.LEFT)) {
       this.body.velocity.x = -this.moveSpeed;
@@ -51,7 +54,5 @@ Player.prototype.update = function () {
         this.animations.play('down');
       }
     }
-  } else {
-    this.body.enable = false;
   }
 };

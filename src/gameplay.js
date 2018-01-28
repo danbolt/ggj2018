@@ -239,6 +239,8 @@ function updatePickups(gameplay) {
     this.itemsCollected++;
     this.jpegsText.text = this.itemsCollected + '/' + this.itemsOnMap;
     this.updateScore(10);
+
+    player.animations.play('get_wifi');
   }, undefined, gameplay);
 };
 
