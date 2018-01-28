@@ -9,7 +9,7 @@ var Player = function (game, x, y) {
   this.animations.add('left', [11, 12, 13, 14], 8, true);
   this.animations.add('up', [8, 9, 10, 9], 8, true);
 
-  this.animations.play('down');
+  this.animations.add('get_wifi', [16, 17, 18, 17], 8, true);
 
   this.moveSpeed = 75;
 };

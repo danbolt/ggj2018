@@ -98,11 +98,26 @@
 
                     },
                  "rotation":0,
-                 "type":"",
+                 "type":"exit",
                  "visible":true,
                  "width":16,
                  "x":96,
                  "y":128
+                }, 
+                {
+                 "height":16,
+                 "id":32,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"playerSpawn",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":80
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -160,7 +175,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":30,
+ "nextobjectid":33,
  "orientation":"orthogonal",
  "properties":
     {
