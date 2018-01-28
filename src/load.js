@@ -68,6 +68,7 @@ Load.prototype.preload = function() {
     'push_maze',
     'gauntlet',
     'spiral',
+    'cake_walk',
   ];
 
   var game = this.game;
