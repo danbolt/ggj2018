@@ -35,6 +35,11 @@ Gameplay.prototype.create = function() {
   this.map.setCollisionByExclusion([], true, this.foreground);
   this.game.physics.enable(this.foreground, Phaser.Physics.ARCADE);
 
+  this.misc = this.game.add.group();
+  this.pushblocks = this.game.add.group();
+  this.pickups = this.game.add.group();
+  this.monsters = this.game.add.group();
+
   this.player = new Player(this.game, 100, 100);
   spawnMisc(this);
   spawnPushblocks(this);
@@ -211,8 +216,6 @@ function spawnEntity(gameplay, spawnData) {
 };
 
 function spawnPushblocks(gameplay) {
-  gameplay.pushblocks = gameplay.game.add.group();
-
   gameplay.map.objects.blocks.forEach(function (spawnData) {
     spawnEntity(gameplay, spawnData);
   }, gameplay);
@@ -225,8 +228,6 @@ function updatePushblocks(gameplay) {
 };
 
 function spawnPickups(gameplay) {
-  gameplay.pickups = gameplay.game.add.group();
-
   gameplay.map.objects.pickups.forEach(function (spawnData) {
     spawnEntity(gameplay, spawnData);
   }, gameplay);
@@ -243,8 +244,6 @@ function updatePickups(gameplay) {
 };
 
 function spawnMonsters(gameplay) {
-  gameplay.monsters = gameplay.game.add.group();
-
   gameplay.map.objects.monsters.forEach(function (spawnData) {
     spawnEntity(gameplay, spawnData);
   }, gameplay);
@@ -262,8 +261,6 @@ function updateMonsters(gameplay) {
 };
 
 function spawnMisc(gameplay) {
-  gameplay.misc = gameplay.game.add.group();
-
   gameplay.map.objects.misc.forEach(function (spawnData) {
     spawnEntity(gameplay, spawnData);
   }, gameplay);
