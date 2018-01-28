@@ -62,19 +62,9 @@ Load.prototype.preload = function() {
 
   this.game.load.image('coloured_squares_tiles', 'asset/img/16x16SquareSheet.png');
 
-  var levels = [
-    'sandbox',
-    'slime_world',
-    'push_maze',
-    'gauntlet',
-    'spiral',
-    'cake_walk',
-  ];
-
-  var game = this.game;
-  levels.forEach(function (levelName) {
-    game.load.tilemap(levelName, 'asset/map/'+levelName+'.json', undefined, Phaser.Tilemap.TILED_JSON);
-  });
+  levelsToLoad.forEach(function (levelName) {
+    this.game.load.tilemap(levelName, 'asset/map/'+levelName+'.json', undefined, Phaser.Tilemap.TILED_JSON);
+  }, this);
 };
 Load.prototype.create = function() {
   //this.game.bgmMelody = this.game.add.audio('background_melody', 0.8, true);

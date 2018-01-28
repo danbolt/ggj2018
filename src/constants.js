@@ -11,6 +11,16 @@ var Directions = {
 var soundEffectsToLoad = ['death', 'download', 'win', 'cat0', 'cat1', 'cat2', 'select'];
 var SoundBank = {};
 
+// json files from asset/maps
+var levelsToLoad = [
+  'sandbox',
+  'slime_world',
+  'push_maze',
+  'gauntlet',
+  'spiral',
+  'cake_walk',
+];
+
 var fragSrc =
     `precision mediump float;
      varying vec2 vTextureCoord;
