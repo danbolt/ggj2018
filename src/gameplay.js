@@ -174,7 +174,6 @@ Gameplay.prototype.shutdown = function () {
   this.countdownTimer = null;
   this.exit = null;
   this.playerSpawn = null;
-  this.currentLevelIndex = 0;
 };
 
 function getUrlParams() {
