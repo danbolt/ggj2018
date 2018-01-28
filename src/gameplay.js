@@ -273,6 +273,9 @@ function updateMonsters(gameplay) {
     if (monster.pushedFrom) {
       monster.pushedFrom(gameplay.player.body.velocity);
     }
+    if (monster.onTouchedPlayer) {
+      monster.onTouchedPlayer();
+    }
     if (monster.onCollision && player.isDead === false) {
       player.animations.play('fall_down');
     }

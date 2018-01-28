@@ -5,11 +5,16 @@ var Slime = function (gameplay, spawnData) {
 
   this.map = gameplay.map;
   this.foreground = gameplay.foreground;
+  this.player = gameplay.player;
 
   this.body.moves = false;
 
   this.timeSinceLastMove = 0;
   this.moveCycle = spawnData.properties.moveCycle || 0;
+
+  this.playerDefaultMoveSpeed = this.player.moveSpeed;
+  this.playerMoveSpeedRestoreTimer = 0;
+  this.playerIsSlowed = false;
 };
 Slime.prototype = Object.create(Phaser.Sprite.prototype);
 Slime.prototype.constructor = Slime;
@@ -19,6 +24,14 @@ Slime.prototype.update = function () {
   while (this.timeSinceLastMove > movePeriod) {
     this.timeSinceLastMove -= movePeriod;
     this.wanderingMove();
+  }
+
+  if (this.playerIsSlowed) {
+    this.playerMoveSpeedRestoreTimer += this.game.time.elapsed;
+    if (this.playerMoveSpeedRestoreTimer > 400) {
+      this.player.moveSpeed = this.playerDefaultMoveSpeed;
+      this.playerIsSlowed = false;
+    }
   }
 };
 Slime.prototype.pushedFrom = function(directon) {
@@ -73,4 +86,9 @@ Slime.prototype.wanderingMove = function() {
     this.pushedFrom(new Phaser.Point(0, -1));
     this.moveCycle = 0;
   }
+};
+Slime.prototype.onTouchedPlayer = function () {
+  this.player.moveSpeed = this.playerDefaultMoveSpeed * 0.5;
+  this.playerMoveSpeedRestoreTimer = 0;
+  this.playerIsSlowed = true;
 };
