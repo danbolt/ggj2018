@@ -49,8 +49,8 @@ var Load = function () {
 	//
 };
 Load.prototype.preload = function() {
-  // MP3 has the most compatability across browsers with the least fuss
-  //this.game.load.audio('background_melody', 'asset/bgm/MUSIC_HERE.mp3');
+  this.game.load.audio('loop01', 'asset/bgm/loop01.mp3');
+  this.game.load.audio('loop02', 'asset/bgm/loop02.mp3');
 
   soundEffectsToLoad.forEach(function (sname) {
     this.game.load.audio(sname, 'asset/sfx/' + sname + '.wav');

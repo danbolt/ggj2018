@@ -17,6 +17,7 @@ var Gameplay = function () {
   this.score = 0;
   this.monsters = null;
   this.exit = null;
+  this.music = null;
 
   this.levelProgression = [
     'cake_walk',
@@ -26,6 +27,11 @@ var Gameplay = function () {
     'push_maze'
   ];
   this.currentLevelIndex = 0;
+
+  this.musicProgression = [
+    'loop01',
+    'loop02',
+  ];
 };
 Gameplay.prototype.init = function() {
   //
@@ -88,6 +94,11 @@ Gameplay.prototype.create = function() {
 
   var filter = new Phaser.Filter(this.game, undefined, fragSrc);
   this.game.world.filters = [ filter ];
+
+  var bgmName = this.musicProgression[this.currentLevelIndex % this.musicProgression.length];
+  this.music = this.game.add.audio(bgmName);
+  this.music.loop = true;
+  this.music.play();
 };
 Gameplay.prototype.update = function () {
   this.game.physics.arcade.collide(this.player, this.foreground);
@@ -181,6 +192,10 @@ Gameplay.prototype.shutdown = function () {
   this.countdownTimer = null;
   this.exit = null;
   this.playerSpawn = null;
+
+  if (this.music) {
+    this.music.stop();
+  }
 };
 
 function getUrlParams() {
