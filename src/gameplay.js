@@ -25,7 +25,10 @@ Gameplay.prototype.preload = function() {
   //
 };
 Gameplay.prototype.create = function() {
-  this.map = this.game.add.tilemap('sandbox');
+  this.urlParams = getUrlParams();
+
+  var startingLevel = this.urlParams.level || 'sandbox';
+  this.map = this.game.add.tilemap(startingLevel);
   this.map.addTilesetImage('16x16SquareSheet', 'coloured_squares_tiles');
   this.background = this.map.createLayer('background');
   this.foreground = this.map.createLayer('foreground');
@@ -143,6 +146,17 @@ Gameplay.prototype.shutdown = function () {
   this.timeText = null;
   this.countdownTimer = null;
   this.exit = null;
+};
+
+function getUrlParams() {
+  var paramStr = window.location.search.substr(1);
+  if (paramStr == null || paramStr == "") { return {}; }
+  var result = {}
+  paramStr.split("&").forEach(function (paramPairStr) {
+    var paramPairArr = paramPairStr.split("=");
+    result[paramPairArr[0]] = paramPairArr[1];
+  });
+  return result;
 };
 
 function spawnEntity(gameplay, spawnData) {
