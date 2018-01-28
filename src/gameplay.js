@@ -98,6 +98,7 @@ Gameplay.prototype.update = function () {
       this.currentLevelIndex++;
       if (this.currentLevelIndex >= this.levelProgression.length) {
         this.game.state.start('WinScreen');
+        this.currentLevelIndex = 0;
       } else {
         this.game.state.start('Gameplay');
       }
@@ -172,6 +173,7 @@ Gameplay.prototype.shutdown = function () {
   this.countdownTimer = null;
   this.exit = null;
   this.playerSpawn = null;
+  this.currentLevelIndex = 0;
 };
 
 function getUrlParams() {

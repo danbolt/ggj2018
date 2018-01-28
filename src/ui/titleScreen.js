@@ -1,6 +1,14 @@
 var TitleScreen = function () {
 };
-TitleScreen.prototype.init = function () {
+TitleScreen.prototype.create = function () {
+  var titleText = this.game.add.bitmapText(
+    this.game.width * 0.5,
+    this.game.height * 0.5,
+    'font',
+    'Press R to start',
+    16);
+  titleText.align = 'center';
+  titleText.anchor.x = 0.5;
 };
 TitleScreen.prototype.update = function () {
   this.game.input.keyboard.onPressCallback = function (key) {
