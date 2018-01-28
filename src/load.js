@@ -67,6 +67,7 @@ Load.prototype.preload = function() {
     'slime_world',
     'push_maze',
     'gauntlet',
+    'spiral',
   ];
 
   var game = this.game;
