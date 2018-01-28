@@ -11,7 +11,7 @@
                  "name":"slime",
                  "properties":
                     {
-
+                     "moveCycle":"1"
                     },
                  "rotation":0,
                  "type":"slime",
@@ -26,7 +26,7 @@
                  "name":"slime",
                  "properties":
                     {
-
+                     "moveCycle":"2"
                     },
                  "rotation":0,
                  "type":"slime",
@@ -56,7 +56,7 @@
                  "name":"slime",
                  "properties":
                     {
-
+                     "moveCycle":"3"
                     },
                  "rotation":0,
                  "type":"slime",
@@ -86,7 +86,7 @@
                  "name":"slime",
                  "properties":
                     {
-
+                     "moveCycle":"2"
                     },
                  "rotation":0,
                  "type":"slime",
