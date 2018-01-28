@@ -35,6 +35,7 @@ var Player = function (game, x, y) {
       var spark = sparks.children[i];
       spark.revive();
       spark.position.set(this.game.width / 4 + (this.game.width * 0.5 * Math.random()), -32);
+      spark.tint = [0xFFFFFF, 0xBBBBBB, 0xDDDDDD][~~(Math.random() * 3)];
 
       var t = this.game.add.tween(spark.position);
       t.to( {x: [(this.game.width * 0.1) + (this.game.width * 0.5 * Math.random()), this.x + 16], y: [this.y + 16]}, 600 + (Math.random() * 100), Phaser.Easing.Linear.None, false, Math.random() * 300);
