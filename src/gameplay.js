@@ -255,8 +255,8 @@ function updateMonsters(gameplay) {
     if (monster.pushedFrom) {
       monster.pushedFrom(gameplay.player.body.velocity);
     }
-    if (monster.onCollision) {
-      player.kill();
+    if (monster.onCollision && player.isDead === false) {
+      player.animations.play('fall_down');
     }
   }, undefined, gameplay);
 };
