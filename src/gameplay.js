@@ -282,7 +282,7 @@ function updateMonsters(gameplay) {
         var t = this.game.add.tween(v);
         t.to( {width: 200, height: 64}, 500, Phaser.Easing.Cubic.InOut);
         t.onComplete.add(function () {
-          var text = this.game.add.bitmapText(this.map.widthInPixels / 2, this.game.height / 2, 'font', 'aww dang!\nit didn\'t go too well!\n\n\npress r to go again', 8)
+          var text = this.game.add.bitmapText(this.map.widthInPixels / 2, this.game.height / 2, 'font', ['aww dang!', 'aww beans!', 'aww peas!', 'bummer!', 'not grood!'][~~(Math.random() * 5)] + '\nit didn\'t go too well!\n\n\npress r to go again', 8)
           text.anchor.set(0.5);
           text.align = 'center';
         }, this);
