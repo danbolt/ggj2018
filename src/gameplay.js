@@ -170,6 +170,7 @@ Gameplay.prototype.shutdown = function () {
   this.timeText = null;
   this.countdownTimer = null;
   this.exit = null;
+  this.playerSpawn = null;
 };
 
 function getUrlParams() {
