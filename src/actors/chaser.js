@@ -10,13 +10,13 @@ var Chaser = function (game, player, spawnData) {
   var actualSprite = this.game.add.sprite(8, 16, 'coloured_squares', 8);
   actualSprite.anchor.set(0.5, 1);
   this.addChild(actualSprite);
-  actualSprite.animations.add('down', [32, 33], 4, true);
-  actualSprite.animations.add('up', [38, 39], 4, true);
-  actualSprite.animations.add('right', [34, 35], 4, true);
-  actualSprite.animations.add('left', [36, 37], 4, true);
+  actualSprite.animations.add('down', [32, 33], 2, true);
+  actualSprite.animations.add('up', [38, 39], 2, true);
+  actualSprite.animations.add('right', [34, 35], 2, true);
+  actualSprite.animations.add('left', [36, 37], 2, true);
   this.animations = actualSprite.animations;
   var t = this.game.add.tween(actualSprite.scale);
-  t.to( {y: [1.4, 1]}, 250, Phaser.Easing.Cubic.InOut, false, undefined, -1);
+  t.to( {y: [1.5, 1]}, 500, Phaser.Easing.Cubic.InOut, false, undefined, -1);
   t.start();
 };
 Chaser.prototype = Object.create(Phaser.Sprite.prototype);
