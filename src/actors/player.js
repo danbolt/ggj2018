@@ -22,7 +22,6 @@ var Player = function (game, x, y) {
   this.moveSpeed = 75;
 
   this.isDead = false;
-  this.isDeadTimer = 0;
 
   // cute animation for getting the cat pics
   var sparks = this.game.add.group();
@@ -59,13 +58,6 @@ Player.prototype.update = function () {
 
   this.isDead = this.animations.currentAnim.name === 'die' || this.animations.currentAnim.name === 'fall_down';
   this.body.enable = !(this.isDead);
-
-  if (this.isDead === true) {
-    this.isDeadTimer += this.game.time.elapsed;
-    if (this.isDeadTimer > 3000) {
-      this.game.state.start('Gameplay');
-    }
-  }
 
   if (this.isDead === false && this.animations.currentAnim.name !== 'get_wifi') {
     var isMovingSideways = false;
