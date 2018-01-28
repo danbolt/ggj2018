@@ -1,5 +1,5 @@
 var Slime = function (gameplay, spawnData) {
-  Phaser.Sprite.call(this, gameplay.game, spawnData.x + 8, spawnData.y + 8, 'coloured_squares', 6);
+  Phaser.Sprite.call(this, gameplay.game, spawnData.x + 8, spawnData.y + 8, 'coloured_squares', 17);
   this.game.physics.enable(this, Phaser.Physics.ARCADE);
   this.anchor.set(0.5, 0.5);
 
@@ -47,14 +47,14 @@ Slime.prototype.pushedFrom = function(directon) {
   this.body.enable = false;
 
   var moveTween = this.game.add.tween(this.position);
-  moveTween.to( { x: this.x + (directon.x * 16), y: this.y + (directon.y * 16) }, 150);
+  moveTween.to( { x: this.x + (directon.x * 16), y: this.y + (directon.y * 16) }, 230);
   moveTween.onComplete.add(function () {
     this.body.enable = true;
     this.body.velocity.set(0);
   }, this);
 
   var scaleTween = this.game.add.tween(this.scale);
-  scaleTween.to( { x: [1, (Math.abs(directon.x) > 0 ? 0.5 : 1.4), 1], y: [1, (Math.abs(directon.y) > 0 ? 0.5 : 1.4), 1] }, 150, Phaser.Easing.Cubic.InOut);
+  scaleTween.to( { x: [1, (Math.abs(directon.x) > 0 ? 0.5 : 1.4), 1], y: [1, (Math.abs(directon.y) > 0 ? 0.5 : 1.4), 1] }, 230, Phaser.Easing.Cubic.InOut);
 
   moveTween.start();
   scaleTween.start();
