@@ -94,6 +94,21 @@
                  "width":16,
                  "x":128,
                  "y":96
+                }, 
+                {
+                 "height":16,
+                 "id":47,
+                 "name":"chaser",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"chaser",
+                 "visible":true,
+                 "width":16,
+                 "x":16,
+                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -119,8 +134,38 @@
                  "type":"pickup",
                  "visible":true,
                  "width":16,
+                 "x":80,
+                 "y":208
+                }, 
+                {
+                 "height":16,
+                 "id":44,
+                 "name":"pickup3",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"pickup",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":16
+                }, 
+                {
+                 "height":16,
+                 "id":46,
+                 "name":"pickup2",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"pickup",
+                 "visible":true,
+                 "width":16,
                  "x":64,
-                 "y":176
+                 "y":80
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -205,7 +250,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":44,
+ "nextobjectid":48,
  "orientation":"orthogonal",
  "properties":
     {
