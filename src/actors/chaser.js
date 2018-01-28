@@ -22,10 +22,25 @@ var Chaser = function (game, player, spawnData) {
 Chaser.prototype = Object.create(Phaser.Sprite.prototype);
 Chaser.prototype.constructor = Chaser;
 Chaser.prototype.update = function () {
+
+  // prefer horizontal movement
+  var isMovingHorizontally = false;
   if (Math.abs(this.player.x - this.x) > 4) {
-    this.body.velocity.x = (this.player.x > this.x) ? this.moveSpeed : -this.moveSpeed;
-    this.body.velocity.y = 0;
-  } else {
+    if (this.player.x > this.x) {
+      if (!this.body.blocked.right) {
+        this.body.velocity.x = this.moveSpeed;
+        this.body.velocity.y = 0;
+        isMovingHorizontally = true;
+      }
+    } else {
+      if (!this.body.blocked.left) {
+        this.body.velocity.x = -this.moveSpeed;
+        this.body.velocity.y = 0;
+        isMovingHorizontally = true;
+      }
+    }
+  }
+  if (!isMovingHorizontally) {
     this.body.velocity.x = 0;
     this.body.velocity.y = (this.player.y > this.y) ? this.moveSpeed : -this.moveSpeed;
   }

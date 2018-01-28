@@ -19,8 +19,10 @@ var Gameplay = function () {
   this.exit = null;
 
   this.levelProgression = [
-    'sandbox',
+    'cake_walk',
     'slime_world',
+    'gauntlet',
+    'spiral',
     'push_maze'
   ];
   this.currentLevelIndex = 0;
