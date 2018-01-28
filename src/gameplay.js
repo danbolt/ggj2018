@@ -113,7 +113,7 @@ Gameplay.prototype.update = function () {
       this.currentLevelIndex++;
       SoundBank['win'].play();
       if (this.currentLevelIndex >= this.levelProgression.length) {
-        this.game.state.start('WinScreen');
+        this.game.state.start('Cutscene', true, false, [4, 6], 'WinScreen');
         this.currentLevelIndex = 0;
       } else {
         this.game.state.start('Gameplay');
