@@ -93,6 +93,10 @@ Gameplay.prototype.create = function() {
     this.game.state.start('Gameplay'); // restart level
   }, this);
 
+  this.catSpirit = this.game.add.sprite(this.map.widthInPixels / 2, this.game.height / 2, 'cats', 0);
+  this.catSpirit.anchor.set(0.5);
+  this.catSpirit.renderable = false;
+
   var filter = new Phaser.Filter(this.game, undefined, fragSrc);
   this.game.world.filters = [ filter ];
 
@@ -281,7 +285,22 @@ function updatePickups(gameplay) {
     this.jpegsText.text = this.itemsCollected + '/' + this.itemsOnMap;
     this.updateScore(10);
     SoundBank['download'].play();
-    this.game.time.events.add(1800, function () { SoundBank['cat' + ~~(Math.random() * 3)].play(); }, this);
+    this.game.time.events.add(1800, function () {
+      this.catSpirit.renderable = true;
+      this.catSpirit.position.set(this.player.x, this.player.y);
+      this.catSpirit.scale.set(0.9);
+      this.catSpirit.alpha = 0.8;
+      this.catSpirit.frame = ~~(Math.random() * 4);
+      var t = this.game.add.tween(this.catSpirit);
+      t.to({alpha: 0}, 1100, Phaser.Easing.Cubic.Out);
+      var tS = this.game.add.tween(this.catSpirit.scale);
+      tS.to({x: 1.4, y: 1.4}, 1100, Phaser.Easing.Cubic.Out);
+      t.onComplete.add(function () { this.catSpirit.renderable = false; }, this);
+      t.start();
+      tS.start();
+
+      SoundBank['cat' + ~~(Math.random() * 3)].play();
+    }, this);
 
     player.animations.play('get_wifi');
   }, undefined, gameplay);

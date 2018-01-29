@@ -60,6 +60,7 @@ Load.prototype.preload = function() {
   this.game.load.spritesheet('player', 'asset/img/player.png', 16, 32);
   this.game.load.spritesheet('logo', 'asset/img/logo.png', 258, 88);
   this.game.load.spritesheet('cutscenes', 'asset/img/cutscenes.png', 320, 128);
+  this.game.load.spritesheet('cats', 'asset/img/catSpirits.png', 64, 64);
 
   this.game.load.image('coloured_squares_tiles', 'asset/img/16x16SquareSheet.png');
 
